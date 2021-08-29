@@ -1,17 +1,17 @@
-import './App.css';
-import { WeatherProvider } from './context/WeatherContext';
-import Header from './components/Header';
-import { FormrProvider } from './context/FormContext';
+import "./App.css";
+import { WeatherProvider } from "./context/WeatherContext";
+import { FormProvider } from "./context/FormContext";
 
+import Container from "./components/Container.js";
 
 function App() {
   return (
     <div className="App">
-      <FormrProvider>
+      <FormProvider>
         <WeatherProvider>
-          <Header></Header>
+          <Container></Container>
         </WeatherProvider>
-      </FormrProvider>
+      </FormProvider>
     </div>
   );
 }
