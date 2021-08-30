@@ -14,34 +14,64 @@ function Weather() {
       ></i>
     ),
     Snow: <i style={{ color: "#d9d9d9" }} className="fas fa-snowflake"></i>,
+    wind_speed: <i style={{ color: "#949494" }} className="fas fa-wind"></i>,
+    temp: (
+      <i style={{ color: "#949494" }} className="fas fa-thermometer-half"></i>
+    ),
   };
 
   const card = {
     description: "",
     main: "",
+    temp: "",
+    min: "",
+    max: "",
+    wind_speed: "",
+    day: "",
+  };
+
+  const getDate = (index) => {
+    console.log(index);
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    return weekday[(d.getDay() + index) % 7];
   };
 
   return (
-    <div className="container">
+    <div>
       <div className="row">
         {weather.map((item, index) => {
           card.description = item["weather"][0]["description"];
           card.main = item["weather"][0]["main"];
-          console.log(card.description);
+          card.temp = item["temp"]["day"];
+          card.min = item["temp"]["min"];
+          card.max = item["temp"]["max"];
+          card.date = item["dt"];
+
           return (
-            <div key={index} className="col-sm-3 col-md-2">
-              <div className="card border-0 mb-3">
-                <div className="card-header bg-transparent border-0">Day</div>
+            <div key={index} className="col-sm-3 col-md-2 rounded-1">
+              <div className="card border border-dark mb-3">
+                <div className="card-header bg-transparent border-0">
+                  {getDate(index)}
+                </div>
                 <div className="card-body ">
                   <h5 className="card-title">{card.main}</h5>
-                  <p className="card-text">
-                    <div style={{ fontSize: 120 }}>{weatherSvg[card.main]}</div>
-
-                    {card.description}
-                  </p>
+                  <div className="card-text" style={{ fontSize: 100 }}>
+                    {weatherSvg[card.main]}
+                  </div>
+                  {card.description}
                 </div>
                 <div className="card-footer bg-transparent border-0">
-                  {item["temp"]["day"]}
+                  {card.temp}
+                  <span className="ms-2">{weatherSvg.temp}</span>
                 </div>
               </div>
             </div>
