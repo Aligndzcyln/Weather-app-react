@@ -6,7 +6,7 @@ function Weather() {
 
   const weatherSvg = {
     Clear: <i style={{ color: "#fcc203" }} className="fas fa-sun"></i>,
-    Clouds: <i style={{ color: "#949494" }} className="fas fa-cloud"></i>,
+    Clouds: <i style={{ color: "#76b5c5" }} className="fas fa-cloud"></i>,
     Rain: (
       <i
         style={{ color: "#949494" }}
@@ -55,23 +55,34 @@ function Weather() {
           card.min = item["temp"]["min"];
           card.max = item["temp"]["max"];
           card.date = item["dt"];
+          card.wind_speed = item["wind_speed"];
 
           return (
-            <div key={index} className="col-sm-3 col-md-2 rounded-1">
+            <div key={index} className="col-sm-4 col-md-3 col-lg-2 rounded-1">
               <div className="card border border-dark mb-3">
                 <div className="card-header bg-transparent border-0">
                   {getDate(index)}
                 </div>
                 <div className="card-body ">
                   <h5 className="card-title">{card.main}</h5>
-                  <div className="card-text" style={{ fontSize: 100 }}>
+                  <div className="card-text" style={{ fontSize: 70 }}>
                     {weatherSvg[card.main]}
                   </div>
-                  {card.description}
+                  <span>
+                    {weatherSvg.wind_speed} {card.wind_speed} <span>km/h</span>
+                  </span>
+                  <div>{card.description}</div>
                 </div>
                 <div className="card-footer bg-transparent border-0">
-                  {card.temp}
-                  <span className="ms-2">{weatherSvg.temp}</span>
+                  <div>
+                    <span className="me-3">Min</span>
+                    <span className="ms-3">Max</span>
+                  </div>
+                  <span className="me-1">{weatherSvg.temp}</span>
+                  <span className="me-3">{Math.round(card.min)}</span>
+
+                  <span className="ms-2 me-1">{weatherSvg.temp}</span>
+                  <span>{Math.round(card.max)}</span>
                 </div>
               </div>
             </div>

@@ -10,7 +10,7 @@ function Header() {
     }
 
     return (
-        <div className="dropdown">
+        <div className="mb-3">
             <select name="city" id="" onChange={(e) => handleChange(JSON.parse(e.target.value))}>
                 {
                     cities.cities.map(city => {
