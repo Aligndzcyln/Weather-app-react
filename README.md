@@ -1,5 +1,7 @@
 # Weather app react
 
+Uygulamanın deploy edilmiş hali: https://gracious-khorana-11231e.netlify.app/
+
 ## Uygulamada kullanılan kütüphaneler
 
 >Axios
